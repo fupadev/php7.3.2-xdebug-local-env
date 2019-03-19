@@ -16,6 +16,9 @@ RUN pecl install xdebug-2.7.0
 RUN docker-php-ext-install zip opcache
 RUN docker-php-ext-enable xdebug
 
+RUN pecl install redis && docker-php-ext-enable redis
+RUN docker-php-ext-install pdo pdo_mysql mysqli pcntl
+
 RUN apt-get clean
 
 WORKDIR /var/www/html
