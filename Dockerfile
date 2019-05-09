@@ -5,7 +5,10 @@ MAINTAINER Johannes Stadler <j.stadler@fupa.net>
 
 ARG DEBIAN_FRONTEND=noninteractive
 
-RUN apt-get update && apt-get install -y --fix-missing apt-utils
+# 2019-05-09/JSt the duplicated update command is required, since the first call 
+# currently fails, due to a removed package in the debian base imaged
+RUN apt-get update || apt-get update && \
+    apt-get install -y --fix-missing apt-utils
 RUN apt-get install -y \
     curl  \
     zlib1g-dev \
